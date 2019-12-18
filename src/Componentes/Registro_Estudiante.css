@@ -1,0 +1,158 @@
+.Formulario{
+   padding: 50px;
+}
+
+.lab-carne{
+    font-size: 25px;
+    position: absolute;
+    top: 125px;
+    left: 400px;
+}
+
+.carne{
+    font-size: 25px;
+    position:absolute;
+    top: 125px;
+    left:700px; 
+   border-radius: 30px;
+    border: 3.5px solid black;
+  /*  border-bottom: 4.5px solid black;
+*/}
+
+.lab-nombre{
+    font-size:25px;
+    position:absolute;
+    top:175px;
+    left:400px;
+}
+
+.nombre{
+    font-size: 25px;
+    position:absolute;
+    top:175px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.lab-naci{
+    font-size: 25px;
+    position:absolute;
+    top:225px;
+    left:400px;
+}
+
+.fecha{
+    font-size: 25px;
+    position:absolute;
+    top:225px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.lab-tel{
+    font-size: 25px;
+    position:absolute;
+    top:275px;
+    left:400px;
+}
+
+.telefono{
+    font-size: 25px;
+    position:absolute;
+    top:275px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.lab-correo{
+    font-size: 25px;
+    position:absolute;
+    top:325px;
+    left:400px;
+}
+
+.correo{
+    font-size: 25px;
+    position:absolute;
+    top:325px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.lab-uni{
+    font-size: 25px;
+    position:absolute;
+    top:375px;
+    left:400px;
+}
+
+.universidad{
+    font-size: 25px;
+    position:absolute;
+    top:375px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.lab-nac{
+    font-size: 25px;
+    position:absolute;
+    top:425px;
+    left:400px;
+}
+
+.nacionalidad{
+    font-size: 25px;
+    position:absolute;
+    top:425px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.lab-nick{
+    font-size: 25px;
+    position:absolute;
+    top:475px;
+    left:400px;
+}
+
+.nickname{
+    font-size: 25px;
+    position:absolute;
+    top:475px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.lab-contra{
+    font-size: 25px;
+    position:absolute;
+    top:525px;
+    left:400px;
+}
+
+.contra{
+    font-size: 25px;
+    position:absolute;
+    top:525px;
+    left:700px;
+    border-radius: 30px;
+    border: 3.5px solid black;
+}
+
+.btn1{
+    font-size: 25px;
+    position:absolute;
+    top:575px;
+    left:600px;
+    border-radius: 30px;
+}
+
+

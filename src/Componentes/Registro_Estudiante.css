@@ -7,6 +7,7 @@
     position: absolute;
     top: 125px;
     left: 400px;
+    color: black;
 }
 
 .carne{
@@ -14,16 +15,16 @@
     position:absolute;
     top: 125px;
     left:700px; 
-   border-radius: 30px;
+    border-radius: 30px;
     border: 3.5px solid black;
-  /*  border-bottom: 4.5px solid black;
-*/}
+  }
 
 .lab-nombre{
     font-size:25px;
     position:absolute;
     top:175px;
     left:400px;
+    color: black;
 }
 
 .nombre{
@@ -40,6 +41,7 @@
     position:absolute;
     top:225px;
     left:400px;
+    color: black;
 }
 
 .fecha{
@@ -56,6 +58,7 @@
     position:absolute;
     top:275px;
     left:400px;
+    color: black;
 }
 
 .telefono{
@@ -72,6 +75,7 @@
     position:absolute;
     top:325px;
     left:400px;
+    color: black;
 }
 
 .correo{
@@ -88,6 +92,7 @@
     position:absolute;
     top:375px;
     left:400px;
+    color: black;
 }
 
 .universidad{
@@ -104,6 +109,7 @@
     position:absolute;
     top:425px;
     left:400px;
+    color: black;
 }
 
 .nacionalidad{
@@ -120,6 +126,7 @@
     position:absolute;
     top:475px;
     left:400px;
+    color: black;
 }
 
 .nickname{
@@ -136,6 +143,7 @@
     position:absolute;
     top:525px;
     left:400px;
+    color: black;
 }
 
 .contra{
@@ -150,7 +158,7 @@
 .btn1{
     font-size: 25px;
     position:absolute;
-    top:575px;
+    top:600px;
     left:600px;
     border-radius: 30px;
 }

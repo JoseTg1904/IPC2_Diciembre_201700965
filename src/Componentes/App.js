@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-/* <Link to="/Registro_Estudiante"></Link>*/
 
 class App extends React.Component {
   state = {
     isOpen: false
   };
+
   toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
+  
   render() {
     const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
     return (

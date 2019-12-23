@@ -1,0 +1,130 @@
+.Formulario{
+    padding: 50px;
+ }
+ 
+ .lab-registro{
+     font-size: 25px;
+     position: absolute;
+     top: 125px;
+     left: 400px;
+     color: black;
+ }
+ 
+ .registro{
+     font-size: 25px;
+     position:absolute;
+     top: 125px;
+     left:700px; 
+     border-radius: 30px;
+     border: 3.5px solid black;
+   }
+ 
+ .lab-nombre-ca{
+     font-size:25px;
+     position:absolute;
+     top:175px;
+     left:400px;
+     color: black;
+ }
+ 
+ .nombre-ca{
+     font-size: 25px;
+     position:absolute;
+     top:175px;
+     left:700px;
+     border-radius: 30px;
+     border: 3.5px solid black;
+ }
+ 
+ .lab-naci-ca{
+     font-size: 25px;
+     position:absolute;
+     top:225px;
+     left:400px;
+     color: black;
+ }
+ 
+ .fecha-ca{
+     font-size: 25px;
+     position:absolute;
+     top:225px;
+     left:700px;
+     border-radius: 30px;
+     border: 3.5px solid black;
+ }
+ 
+ .lab-correo-ca{
+     font-size: 25px;
+     position:absolute;
+     top:275px;
+     left:400px;
+     color: black;
+ }
+ 
+ .correo-ca{
+     font-size: 25px;
+     position:absolute;
+     top:275px;
+     left:700px;
+     border-radius: 30px;
+     border: 3.5px solid black;
+ }
+ 
+ .lab-uni-ca{
+     font-size: 25px;
+     position:absolute;
+     top:325px;
+     left:400px;
+     color: black;
+ }
+ 
+ .universidad-ca{
+     font-size: 25px;
+     position:absolute;
+     top:325px;
+     left:700px;
+     border-radius: 30px;
+     border: 3.5px solid black;
+ }
+ 
+ .lab-nick-ca{
+     font-size: 25px;
+     position:absolute;
+     top:375px;
+     left:400px;
+     color: black;
+ }
+ 
+ .nickname-ca{
+     font-size: 25px;
+     position:absolute;
+     top:375px;
+     left:700px;
+     border-radius: 30px;
+     border: 3.5px solid black;
+ }
+ 
+ .lab-contra-ca{
+     font-size: 25px;
+     position:absolute;
+     top:425px;
+     left:400px;
+     color: black;
+ }
+ 
+ .contra-ca{
+     font-size: 25px;
+     position:absolute;
+     top:425px;
+     left:700px;
+     border-radius: 30px;
+     border: 3.5px solid black;
+ }
+ 
+ .btn2{
+     font-size: 25px;
+     position:absolute;
+     top:490px;
+     left:600px;
+     border-radius: 30px;
+ }

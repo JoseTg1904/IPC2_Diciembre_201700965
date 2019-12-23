@@ -4,11 +4,6 @@ import './Registro_Catedratico.css'
 
 class Registro_Catedratico extends React.Component {
 
-    state = {
-        date: new Date(),
-    }
-    onChange = date => this.setState({ date })
-
     render() {
         return (
             <div>
@@ -16,35 +11,35 @@ class Registro_Catedratico extends React.Component {
                 <form>
                 <div className="Formulario">
                     <div>
-                        <label htmlFor="carne" className="lab-carne">Registro de personal </label>
-                        <input className='carne' name="carne" id="carne" type="text" />
+                        <label htmlFor="registro" className="lab-registro">Registro de personal</label>
+                        <input className='registro' name="registro" id="registro" type="text" />
                     </div>
                     <div>
-                        <label htmlFor="nombre" className="lab-nombre">Nombre </label>
-                        <input className='nombre' name="nombre" id="nombre" type="text" />
+                        <label htmlFor="nombre-ca" className="lab-nombre-ca">Nombre</label>
+                        <input className='nombre-ca' name="nombre-ca" id="nombre-ca" type="text" />
                     </div>
                     <div>
-                        <label htmlFor='fecha' className="lab-naci">Fecha de nacimiento</label>                        
-                        <input className='fecha' name="fecha" id="fecha" type="text" />
+                        <label htmlFor='fecha-ca' className="lab-naci-ca">Fecha de nacimiento</label>                        
+                        <input className='fecha-ca' name="fecha-ca" id="fecha-ca" type="text" />
                     </div>
                     <div>
-                        <label htmlFor="correo" className="lab-correo">Correo electronico </label>
-                        <input className='correo' name="correo" id="correo" type="text" />
+                        <label htmlFor="correo-ca" className="lab-correo-ca">Correo electronico</label>
+                        <input className='correo-ca' name="correo-ca" id="correo-ca" type="text" />
                     </div>
                     <div>
-                        <label htmlFor="universidad" className="lab-uni">Universidad </label>
-                        <input className='universidad' name="universidad" id="universidad" type="text" />
+                        <label htmlFor="universidad-ca" className="lab-uni-ca">Universidad</label>
+                        <input className='universidad-ca' name="universidad-ca" id="universidad-ca" type="text" />
                     </div>
                     <div>
-                        <label htmlFor="nickname" className="lab-nick">Nickname </label>
-                        <input className='nickname' name="nickname" id="nickname" type="text" />
+                        <label htmlFor="nickname-ca" className="lab-nick-ca">Nickname</label>
+                        <input className='nickname-ca' name="nickname-ca" id="nickname-ca" type="text" />
                     </div>
                     <div>
-                        <label htmlFor="contra" className="lab-contra">Contraseña</label>
-                        <input className='contra' name="contra" id="contra" type="text" />
+                        <label htmlFor="contra-ca" className="lab-contra-ca">Contraseña</label>
+                        <input className='contra-ca' name="contra-ca" id="contra-ca" type="text" />
                     </div>
                     <div>
-                        <button type="button" className="btn1 btn-dark btn-lg">Registrarse</button>
+                        <button type="submit" className="btn2 btn-dark btn-lg">Registrarse</button>
                     </div>
                 </div>
                 </form>

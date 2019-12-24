@@ -14,6 +14,7 @@ class Ingreso extends Component {
             case ('Administrador'):
                 if (document.getElementById("nick").value === "admin" &&
                     document.getElementById("contra").value === "admin") {     
+                        axios.post("http://localhost:4000/Crear_Admin/info",{nick:document.getElementById("nick").value})    
                         window.location = '/Admin/Inicio'
                 } else {
                     var nick = document.getElementById("nick").value;
@@ -84,14 +85,14 @@ class Ingreso extends Component {
         return (
             <div className="Ingreso">
                 < Inicio />
-                <div class="mt-5">
-                    <div class="card  login mx-auto mb-3">
-                        <div class="card-header">Iniciar sesión</div>
-                        <div class="card-body">
+                <div className="mt-5">
+                    <div className="card  login mx-auto mb-3">
+                        <div className="card-header">Iniciar sesión</div>
+                        <div className="card-body">
                             <form>
                                 <fieldset>
                                     <div className="grupo-texto">
-                                        <div class="form-group">
+                                        <div className="form-group">
                                             <label>Usuario</label>
                                             <input type="text"
                                                 id="nick"
@@ -99,14 +100,14 @@ class Ingreso extends Component {
                                                 class="form-control" aria-describedby="emailHelp"
                                                 placeholder="Ingrese usuario" />
                                         </div>
-                                        <div class="form-group">
+                                        <div className="form-group">
                                             <label>Contraseña</label>
                                             <input type="password"
                                                 id="contra"
                                                 name="contra" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese contraseña" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div className="form-group">
                                         <label for="combo">Tipo de cuenta</label>
                                         <select class="form-control" id="combo">
                                             <option>Administrador</option>

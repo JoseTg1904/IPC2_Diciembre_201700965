@@ -25,6 +25,8 @@ server.use('/Crear_Bien', require('./Rutas/server_inventario'));
 server.use('/Crear_Conta', require('./Rutas/server_contactos'));
 server.use('/Crear_Curso', require('./Rutas/server_cursos'));
 server.use('/Presupuesto', require('./Rutas/server_presupuesto'));
+server.use('/Asignacion_Curso', require('./Rutas/server_asignacion_cursos'));
+server.use('/Noticias', require('./Rutas/server_noticias'));
 
 // archivos estaticos
 server.use(express.static(path.join('../public')));

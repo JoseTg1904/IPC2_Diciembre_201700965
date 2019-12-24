@@ -35,8 +35,13 @@ class Barra_Admin extends Component {
                                    <Link className="dropdown-item" to="/Admin/Ver_Bienes">Ver bienes materiales</Link>
                                </div>
                            </li>
-                           <li className="nav-item">
-                               <Link className="nav-link" to="/Admin/Noticias">Noticias</Link>
+                           <li className="nav-item dropdown">
+                               <a className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Noticias</a>
+                               <div className="dropdown-menu">
+                                   <Link className="dropdown-item" to="/Admin/Crear_Noticia">Crear noticia</Link>
+                                   <div className="dropdown-divider"></div>
+                                   <Link className="dropdown-item" to="/Admin/Ver_Noticias">Ver noticias</Link>
+                               </div>
                            </li>
                            <li className="nav-item">
                                <Link className="nav-link" to="/Admin/Carga">Carga masiva</Link>

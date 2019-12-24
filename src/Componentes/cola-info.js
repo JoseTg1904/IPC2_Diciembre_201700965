@@ -9,8 +9,9 @@ class colaInfo extends React.Component {
     componentDidMount(){
         axios.get("http://localhost:4000/Crear_Cola/a/nick").then( function (response)
         {
-            var ruta = "http://localhost:4000/Crear_Cola/bus/"+ response.data;
-            console.log(ruta + " " + response.data)
+            localStorage.setItem('usuario',response.data);
+            var ruta = "http://localhost:4000/Crear_Cola/bus/"+ localStorage.getItem('usuario');
+
             axios.get(ruta,{
             }).then(function (result){
                     console.log("valor del json " + result.data.nombre)
@@ -30,15 +31,6 @@ class colaInfo extends React.Component {
     }
 
     modificarDatos(e){
-            console.log("si llego aca" + 
-            "nombre: " + window.parent.document.getElementById("nombre-in").value
-            +"fecha: "+window.parent.document.getElementById("fecha-in").value
-            +"telefono:"+window.parent.document.getElementById("telefono-in").value
-            +"correo: "+window.parent.document.getElementById("correo-in").value
-            +"nick: "+window.parent.document.getElementById("nick-in").value
-            +"contra: "+window.parent.document.getElementById("contraseña-in").value
-            +"puesto: "+window.parent.document.getElementById("puesto-in").value
-            )
             var path = "http://localhost:4000/Crear_Admin/actualizar/"+nombre_ant
             console.log(path)
         axios.post(path,{
@@ -54,6 +46,17 @@ class colaInfo extends React.Component {
         })
        // })
         e.preventDefault();
+    }
+
+    eliminar(){
+        if( localStorage.getItem('usuario') === "admin"){
+            alert('El administrador principal no puede ser eliminado')
+        }else{
+            var ruta = "http://localhost:4000/Crear_Cola/" + localStorage.getItem('usuario');
+            axios.delete(ruta).then(props =>{
+                window.location = "/"
+            })
+        }
     }
 
     render() {
@@ -96,6 +99,7 @@ class colaInfo extends React.Component {
                                     </div>
                                     <div className="but">
                                     <button type="submit" className="btn but btn-primary">Registrar</button>
+                                    <button type="button" onClick={this.eliminar} className="btn but btn-primary">Eliminar</button>
                                     </div>
                                 </fieldset>
                             </form>

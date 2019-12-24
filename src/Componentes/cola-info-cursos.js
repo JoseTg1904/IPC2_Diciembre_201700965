@@ -1,9 +1,9 @@
 import React from 'react';
-import Barra from './Barra_Admin';
+import Barra from './Barra_Cola';
 import Axios from 'axios';
 
 
-class Ingresos_Info extends React.Component {
+class Cursos_Info extends React.Component {
 
     constructor() {
         super();
@@ -18,34 +18,41 @@ class Ingresos_Info extends React.Component {
         this.obtenerDatos()
     }
 
+
+    asignar(nick) {
+        var ruta = "http://localhost:4000/Crear_Cola/bus/" + localStorage.getItem('usuario')
+        fetch(ruta)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.carne)
+                Axios.post("http://localhost:4000/Asignacion_Curso", {
+                    carne: data.carne,
+                    curso: nick
+                })
+            })
+    }
+
     obtenerDatos() {
-        fetch("http://localhost:4000/Presupuesto/egresos")
+        fetch("http://localhost:4000/Crear_Curso/")
             .then(res => res.json())
             .then(data => {
                 this.setState({ admins: data })
+                //this.componentDidMount();
             });
-    }
-
-    eliminar(nick){
-        var ruta = "http://localhost:4000/Presupuesto/egreso/" + nick;
-        Axios.delete(ruta).then(props =>{
-            console.log(props)
-            this.componentDidMount()
-        })
-        
     }
 
     render() {
         return (
-            <div className="Tabla-ad">
+            <div className="Tabla-ad" >
                 <Barra />
                 <table className="table table-dark table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Codigo</th>
-                            <th scope="col">Concepto</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Seccion</th>
+                            <th scope="col">Universidad</th>
+                            <th scope="col">Catedratico titular</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -55,11 +62,12 @@ class Ingresos_Info extends React.Component {
                                 return (
                                     <tr className="table-datos table-active" key={admin.codigo}>
                                         <td>{admin.codigo}</td>
-                                        <td>{admin.concepto}</td>
-                                        <td>{admin.fecha}</td>
-                                        <td>{admin.total}</td>
+                                        <td>{admin.nombre}</td>
+                                        <td>{admin.seccion}</td>
+                                        <td>{admin.universidad}</td>
+                                        <td>{admin.titular}</td>
                                         <td>
-                                        <button onClick={() => this.eliminar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Eliminar</button>
+                                            <button onClick={() => this.asignar(admin)} type="button" className="btn btn-primary btn-dark btn-lg">Asignar</button>
                                         </td>
                                     </tr>
                                 )
@@ -72,4 +80,4 @@ class Ingresos_Info extends React.Component {
     }
 }
 
-export default Ingresos_Info;
+export default Cursos_Info;

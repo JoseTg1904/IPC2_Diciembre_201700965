@@ -9,7 +9,9 @@ class adminInfo extends React.Component {
     componentDidMount(){
         axios.get("http://localhost:4000/Crear_Admin/a/nick").then( function (response)
         {
-            var ruta = "http://localhost:4000/Crear_Admin/bus/"+ response.data;
+            localStorage.setItem('usuario', response.data);
+            console.log(localStorage.getItem('usuario'))
+            var ruta = "http://localhost:4000/Crear_Admin/bus/"+ localStorage.getItem('usuario');
             console.log(ruta + " " + response.data)
             axios.get(ruta,{
             }).then(function (result){
@@ -57,6 +59,17 @@ class adminInfo extends React.Component {
         e.preventDefault();
     }
 
+    eliminar(){
+        if( localStorage.getItem('usuario') === "admin"){
+            alert('El administrador principal no puede ser eliminado')
+        }else{
+            var ruta = "http://localhost:4000/Crear_Admin/" + localStorage.getItem('usuario');
+            axios.delete(ruta).then(props =>{
+                window.location = "/"
+            })
+        }
+    }
+
     render() {
         return (
             <div className="crear">
@@ -96,6 +109,7 @@ class adminInfo extends React.Component {
                                     </div>
                                     <div className="but">
                                     <button type="submit" className="btn but btn-primary">Modificar</button>
+                                    <button type="button" onClick={this.eliminar} className="btn but btn-primary">Eliminar</button>
                                     </div>
                                 </fieldset>
                             </form>

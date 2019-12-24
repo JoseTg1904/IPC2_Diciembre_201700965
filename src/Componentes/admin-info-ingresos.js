@@ -1,6 +1,6 @@
 import React from 'react';
 import Barra from './Barra_Admin';
-
+import Axios from 'axios'
 
 class Ingresos_Info extends React.Component {
 
@@ -25,6 +25,15 @@ class Ingresos_Info extends React.Component {
             });
     }
 
+    eliminar(nick){
+        var ruta = "http://localhost:4000/Presupuesto/ingreso/" + nick;
+        Axios.delete(ruta).then(props =>{
+            console.log(props)
+            this.componentDidMount()
+        })
+        
+    }
+
     render() {
         return (
             <div className="Tabla-ad">
@@ -36,6 +45,7 @@ class Ingresos_Info extends React.Component {
                             <th scope="col">Concepto</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Total</th>
+                            <th scope="rol"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,6 +58,9 @@ class Ingresos_Info extends React.Component {
                                         <td>{admin.fecha}</td>
                                         <td>{admin.total}</td>
                                         <td>{admin.titular}</td>
+                                        <td>
+                                        <button onClick={() => this.eliminar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Eliminar</button>
+                                        </td>
                                     </tr>
                                 )
                             })

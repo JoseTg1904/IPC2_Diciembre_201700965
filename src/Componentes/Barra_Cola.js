@@ -40,9 +40,9 @@ class Barra_Cola extends Component {
                            <li className="nav-item dropdown">
                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cursos</a>
                                <div className="dropdown-menu">
-                                   <Link className="dropdown-item" to="/Admin/Crear_Curso">Crear curso</Link>
+                                   <Link className="dropdown-item" to="/Cola/Ver_Cursos">Ver cursos</Link>
                                    <div className="dropdown-divider"></div>
-                                   <Link className="dropdown-item" to="/Admin/Ver_Cursos">Ver cusos</Link>
+                                   <Link className="dropdown-item" to="/Cola/Cursos_Asignados">Cursos asignados</Link>
                                    </div>
                            </li>
                            <li className="nav-item">

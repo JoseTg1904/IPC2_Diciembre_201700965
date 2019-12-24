@@ -72,6 +72,32 @@ router.post('/:meta', (req,res) =>{
     meta = req.params.meta
 })
 
+//eliminar ingreso
+router.delete('/ingreso/:codigo',(req,res)=>{
+    eliminarIngreso(req.params.codigo)
+    res.send('eliminado')
+})
+
+router.delete('/egreso/:codigo',(req,res)=>{
+    eliminarEgreso(req.params.codigo)
+    res.send('eliminado')
+})
+
+function eliminarIngreso(valorABuscar){
+    for(let i=0;i<admins.length;i++){
+        if(admins[i]['codigo'] === valorABuscar){
+            admins.splice(i,1);
+        }
+    }
+}
+
+function eliminarEgreso(valorABuscar){
+    for(let i=0;i<egresos.length;i++){
+        if(egresos[i]['codigo'] === valorABuscar){
+            egresos.splice(i,1);
+        }
+    }
+}
 
 function retornarSobrante(ing,egr,met){
     console.log("valor ingreso " + ing)

@@ -26,18 +26,23 @@ router.get('/boletos', (req, res) => {
 
 //retorna los egresos
 router.get('/cant_egresos', (req, res) => {
-    res.json(egreso)
+    res.json(actualizarEgreso())
 });
 
 //retorna los egresos
 router.get('/cant_ingresos', (req, res) => {
-    res.json(ingreso)
+    res.json(actualizarIngreso())
 });
 
 //retorna el estimado
 router.get('/estimado', (req, res) => {
     res.json(meta)
 });
+
+//retornar restante
+router.get('/restante', (req,res) =>{
+    res.json( retornarSobrante(actualizarIngreso(),actualizarEgreso(),meta) )
+})
 
 //retorna un identificador
 router.get('/identificador', (req, res) => {
@@ -63,20 +68,32 @@ router.post('/egresos', (req, res) => {
     res.json('recibido');
 });
 
+router.post('/:meta', (req,res) =>{
+    meta = req.params.meta
+})
+
+
+function retornarSobrante(ing,egr,met){
+    console.log("valor ingreso " + ing)
+    console.log("valord egreso"+ egr)
+    console.log("valor meta "+ met)
+    return (met-(ing-egr))
+}
+
 function actualizarIngreso(){
     var dato = 0;
     for(var i=0;i<admins.length;i++){
-        dato = dato + admins[i]['total']
+        dato = dato + Number(admins[i]['total'])
     }
-    ingreso = dato;
+    return dato;
 }
 
 function actualizarEgreso(){
     var dato = 0;
     for(var i=0;i<egresos.length;i++){
-        dato = dato + egresos[i]['total']
+        dato = dato + Number(egresos[i]['total'])
     }
-    egresos = dato;
+    return dato;
 }
 
 module.exports = router;

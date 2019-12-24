@@ -60,7 +60,7 @@ class egreso extends React.Component {
                 <Barra />
                 <div className="mt-5">
                     <div className="card  text-white bg-primary carta5 mx-auto mb-3">
-                        <div className="card-header">Ingreso</div>
+                        <div className="card-header">Egreso</div>
                         <div className="card-body">
                             <form onSubmit={this.obtenerDatos}>
                                 <fieldset>
@@ -71,7 +71,7 @@ class egreso extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="total" >Total</label>
-                                        <input type="text" className="form-control" id="total" placeholder="Ingresa el total" />
+                                        <input type="number" className="form-control" id="total" placeholder="Ingresa el total" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha</label>

@@ -21,6 +21,9 @@ class ingreso extends React.Component {
             codigo: id
         }).then(function (response) {
             console.log(response);
+            axios.get("http://localhost:4000/Presupuesto/identificador").then(res =>{
+                id = res.data;
+            })
         });
         document.getElementById("concepto").value = ""
         document.getElementById("total").value = ""
@@ -44,7 +47,7 @@ class ingreso extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="total" >Total</label>
-                                        <input type="text" className="form-control" id="total" placeholder="Ingresa el total" />
+                                        <input type="number" className="form-control" id="total" placeholder="Ingresa el total" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha</label>

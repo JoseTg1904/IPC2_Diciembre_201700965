@@ -31,6 +31,9 @@ import Ad_Mod_Curso from '../Paginas/Ad_Mod_Cursos'
 import Ad_Cre_Orden from '../Paginas/Ad_Cre_Orden'
 import Ad_Cre_In from '../Paginas/Ad_Cre_In'
 import Ad_Cre_Eg from '../Paginas/Ad_Cre_Eg'
+import Ad_Ing from '../Paginas/Ad_In'
+import Ad_Egr from '../Paginas/Ad_Eg'
+import Ad_Proye from '../Paginas/Ad_Proye'
 
 function Router(){
     return(
@@ -66,6 +69,9 @@ function Router(){
             <Route exact path="/Admin/Crear_Orden" component={Ad_Cre_Orden} />
             <Route exact path="/Admin/Crear_Ingreso" component={Ad_Cre_In} />
             <Route exact path="/Admin/Crear_Egreso" component={Ad_Cre_Eg} />
+            <Route exact path="/Admin/Ver_Ingresos" component={Ad_Ing} />
+            <Route exact path="/Admin/Ver_Egresos" component={Ad_Egr} />
+            <Route exact path="/Admin/Ver_Proyeccion" component={Ad_Proye} />
             <Route component={NotFound} />
             </Switch>
         </BrowserRouter>

@@ -68,7 +68,7 @@ class orden extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="total" >Total</label>
-                                        <input type="text" className="form-control" id="total" placeholder="Ingresa el total" />
+                                        <input type="number" className="form-control" id="total" placeholder="Ingresa el total" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha</label>

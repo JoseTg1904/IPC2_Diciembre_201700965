@@ -47,7 +47,7 @@ import Cola_Cursos from '../Paginas/Cola_Cursos'
 import Cola_Cursos_As from '../Paginas/Cola_Cursos_Propios'
 import Ad_Cre_Not from '../Paginas/Ad_Cre_Noticias'
 import Ad_Cre_Com from '../Paginas/Ad_Cre_Com'
-
+import Noti from '../Paginas/Noticias'
 
 function Router() {
     return (
@@ -99,7 +99,7 @@ function Router() {
                 <Route exact path="/Cola/Cursos_Asignados" component={Cola_Cursos_As} />
                 <Route exact path="/Admin/Crear_Noticia" component={Ad_Cre_Not} />
                 <Route exact path="/Admin/Ver_Noticias" component={Ad_Cre_Com} />
-
+                <Route exact path="/Noticia" component={Noti} />
                 <Route component={NotFound} />
             </Switch>
         </BrowserRouter>

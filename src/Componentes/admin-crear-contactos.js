@@ -37,12 +37,12 @@ class contacto extends React.Component {
     }
 
     obtenerDatos(e) {
-        var seleccionados = [];
+       /* var seleccionados = [];
         for(let i=0;i<document.getElementById("encargado").length;i++){
             if(document.getElementById("encargado").options[i].selected === true ){
                 seleccionados.push(" "+document.getElementById("encargado").options[i].value)
             }
-        }
+        }*/
         axios.post("http://localhost:4000/Crear_Conta", {
             nombre: document.getElementById("nombre").value,
             telefono: document.getElementById("telefono").value,
@@ -50,7 +50,7 @@ class contacto extends React.Component {
             direccion: document.getElementById("direccion").value,
             rol: document.getElementById("rol").value ,
             oportunidades: document.getElementById("oportunidades").value,
-            encargado: seleccionados
+            encargado: document.getElementById("encargado").value
         }).then(function (response) {
             console.log(response);
         });
@@ -100,7 +100,7 @@ class contacto extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="encargado">Encargado</label>
-                                        <select className="form-control multi-select"  multiple="multiple" 
+                                        <select className="form-control"
                                         id="encargado">{
                                             this.state.admins.map( admin =>{
                                                 return(

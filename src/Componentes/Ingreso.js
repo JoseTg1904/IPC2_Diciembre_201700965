@@ -31,12 +31,48 @@ class Ingreso extends Component {
                 }
                 break;
             case ('Colaborador'):
+                    var nick = document.getElementById("nick").value;
+                    var contra = document.getElementById("contra").value;
+                    axios.post("http://localhost:4000/Crear_Cola/validar", {
+                        nick: nick,
+                        contra: contra
+                    }).then(function (response) {
+                        if (response.data === 1000) {
+                            axios.post("http://localhost:4000/Crear_Cola/info",{nick:nick})    
+                            window.location = '/Cola/Inicio';
+                        }
+                        console.log(response)
+                    })
                 console.log('cola');
                 break;
             case ('Catedratico'):
+                    var nick = document.getElementById("nick").value;
+                    var contra = document.getElementById("contra").value;
+                    axios.post("http://localhost:4000/Crear_Cate/validar", {
+                        nick: nick,
+                        contra: contra
+                    }).then(function (response) {
+                        if (response.data === 1000) {
+                            axios.post("http://localhost:4000/Crear_Cate/info",{nick:nick})    
+                            window.location = '/Cate/Inicio';
+                        }
+                        console.log(response)
+                    })
                 console.log('cate');
                 break;
             case ('Estudiante'):
+                    var nick = document.getElementById("nick").value;
+                    var contra = document.getElementById("contra").value;
+                    axios.post("http://localhost:4000/Crear_Estu/validar", {
+                        nick: nick,
+                        contra: contra
+                    }).then(function (response) {
+                        if (response.data === 1000) {
+                            axios.post("http://localhost:4000/Crear_Estu/info",{nick:nick})    
+                            window.location = '/Estu/Inicio';
+                        }
+                        console.log(response)
+                    })
                 console.log('estu');
                 break;
             default:

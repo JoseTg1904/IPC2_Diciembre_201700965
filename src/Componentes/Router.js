@@ -6,6 +6,7 @@ import Re_Ca from '../Paginas/Re_Ca'
 import Ingreso from '../Paginas/In'
 import NotFound from '../Paginas/NotFound'
 import Ad_Prin from '../Paginas/Admin_Principal'
+import Cola_Prin from '../Paginas/Cola_Principal'
 import Ad_Cre_Ad from '../Paginas/Ad_Cre_Ad'
 import Ad_Info from '../Paginas/Admin_Perfil'
 import Ad_Ads from '../Paginas/Ad_Ads'
@@ -34,6 +35,16 @@ import Ad_Cre_Eg from '../Paginas/Ad_Cre_Eg'
 import Ad_Ing from '../Paginas/Ad_In'
 import Ad_Egr from '../Paginas/Ad_Eg'
 import Ad_Proye from '../Paginas/Ad_Proye'
+import Cola_Perfil from '../Paginas/Cola_Perfil'
+import Cola_Bienes from '../Paginas/Cola_Bienes'
+import Cola_Ver_Contas from '../Paginas/Cola_Conta'
+import Cola_Orden from '../Paginas/Cola_Cre_Orde'
+import Cola_Ing from '../Paginas/Cola_In'
+import Cola_Egr from '../Paginas/Cola_Eg'
+import Cola_Proye from '../Paginas/Cola_Proye'
+
+
+
 
 function Router(){
     return(
@@ -72,6 +83,15 @@ function Router(){
             <Route exact path="/Admin/Ver_Ingresos" component={Ad_Ing} />
             <Route exact path="/Admin/Ver_Egresos" component={Ad_Egr} />
             <Route exact path="/Admin/Ver_Proyeccion" component={Ad_Proye} />
+            <Route exact path="/Cola/Inicio" component={Cola_Prin} />
+            < Route exact path="/Cola/Perfil" component={Cola_Perfil}/>
+            < Route exact path="/Cola/Inventario" component={Cola_Bienes}/>
+            < Route exact path="/Cola/Ver_Contactos" component={Cola_Ver_Contas}/>
+            <Route exact path="/Cola/Crear_Orden" component={Cola_Orden} />
+            <Route exact path="/Cola/Ver_Ingresos" component={Cola_Ing} />
+            <Route exact path="/Cola/Ver_Egresos" component={Cola_Egr} />
+            <Route exact path="/Cola/Ver_Proyeccion" component={Cola_Proye} />
+
             <Route component={NotFound} />
             </Switch>
         </BrowserRouter>

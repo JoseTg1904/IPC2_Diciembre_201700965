@@ -98,7 +98,7 @@ class ContaMod extends React.Component {
             direccion: document.getElementById("direccion").value,
             rol: document.getElementById("rol").value ,
             oportunidades: document.getElementById("oportunidades").value,
-            encargado: seleccionados
+            encargado: document.getElementById("encargado").value
         }).then(function (response) {
             console.log(response);
         });
@@ -141,7 +141,7 @@ class ContaMod extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="encargado">Encargado</label>
-                                        <select className="form-control multi-select" multiple="multiple"
+                                        <select className="form-control" 
                                             id="encargado">{
                                                 this.state.admins.map(admin => {
                                                     return (

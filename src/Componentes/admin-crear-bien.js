@@ -37,18 +37,18 @@ class admin extends React.Component {
     }
 
     obtenerDatos(e) {
-        var seleccionados = [];
+        /*var seleccionados = [];
         for(var i=0;i<document.getElementById("encargados").length;i++){
             if(document.getElementById("encargados").options[i].selected === true ){
                 seleccionados.push(" "+document.getElementById("encargados").options[i].value)
             }
-        }
+        }*/
         axios.post("http://localhost:4000/Crear_Bien", {
             codigo: document.getElementById("codigo").value,
             nombre: document.getElementById("nombre").value,
             descripcion: document.getElementById("descripcion").value,
             cantidad: document.getElementById("cantidad").value,
-            encargados: seleccionados,
+            encargados: document.getElementById("encargados").value,
             ubicacion: document.getElementById("ubicacion").value,
             estado: document.getElementById("estado").value
         }).then(function (response) {
@@ -91,8 +91,8 @@ class admin extends React.Component {
                                         <input type="text" className="form-control" id="cantidad" placeholder="Ingresa la cantidad" />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="encargados">Encargados</label>
-                                        <select className="form-control multi-select"  multiple="multiple" 
+                                        <label htmlFor="encargados">Encargado</label>
+                                        <select className="form-control"   
                                         id="encargados">{
                                             this.state.admins.map( admin =>{
                                                 return(

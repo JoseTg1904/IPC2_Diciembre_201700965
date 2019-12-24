@@ -3,24 +3,6 @@ import './admin-mod-bienes.css'
 import axios from 'axios';
 var nombre_ant = "";
 
-   /*  fetch(path,{
-            method: 'POST',
-            body: JSON.stringify( {
-            'codigo': window.parent.document.getElementById("codigo").value,
-            'nombre': window.parent.document.getElementById("nombre").value,
-            'descripcion': window.parent.document.getElementById("descripcion").value,
-           'cantidad': window.parent.document.getElementById("cantidad").value,
-            'emcargados':'seleccionados',
-            'ubicacion': document.getElementById("ubicacion").value,
-            'estado': window.parent.document.getElementById("estado").values
-            }),
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })*/
-
-
 class bienes extends React.Component {
 
     constructor(){
@@ -68,7 +50,7 @@ class bienes extends React.Component {
             nombre: window.parent.document.getElementById("nombre").value,
             descripcion: window.parent.document.getElementById("descripcion").value,
             cantidad: window.parent.document.getElementById("cantidad").value,
-            encargados: seleccionados,
+            encargados: document.getElementById("encargados").value,
             ubicacion: document.getElementById("ubicacion").value,
             estado: window.parent.document.getElementById("estado").value,
         }).then(function (res) {
@@ -124,7 +106,7 @@ class bienes extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="encargados">Encargados</label>
-                                        <select className="form-control multi-select"  multiple="multiple" 
+                                        <select className="form-control" 
                                         id="encargados">{
                                             this.state.vars.map( admin =>{
                                                 return(

@@ -7,7 +7,6 @@ var id = "";
 class ingreso extends React.Component {
 
     componentDidMount() {
-        //this.obtenerDatos();
         axios.get("http://localhost:4000/Noticias/id_Not").then(res =>{
             id = res.data;
             console.log(id)

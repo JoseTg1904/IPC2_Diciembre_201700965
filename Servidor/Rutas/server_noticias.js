@@ -23,11 +23,24 @@ router.get('/id_Not', (req, res) => {
     ident++;
 });
 
+//agregar comentario
+router.post('/:codigo', (req,res) =>{
+    buscarNoticia(req.params.codigo,req.body)
+})
+
 //identificador-comentario
 router.get('/id_Com', (req, res) => {
     var id = "N-"+ide 
     res.json(id)
     ide++;
 });
+
+function buscarNoticia(id,comen){
+    for(let i=0;i<noticias.length;i++){
+        if(noticias[i]['codigo'] === id){
+            noticias[i]['comentarios'].push(comen)
+        }
+    }
+}
 
 module.exports = router;

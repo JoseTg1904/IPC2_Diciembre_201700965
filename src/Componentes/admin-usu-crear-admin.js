@@ -5,6 +5,33 @@ import axios from 'axios';
 
 class admin extends React.Component {
 
+
+    importarCSV(e) {
+        let archivo = e.target.files
+        let lector = new FileReader()
+        lector.readAsText(archivo[0])
+        lector.onload = e => {
+            let info = e.target.result
+            var dataArray = info.split(/\r?\n/);
+            for (var i = 0; i < dataArray.length; i++) {
+                var arreglo = dataArray[i].split(",");
+                var json = {
+                    nombre: arreglo[0],
+                    fecha: arreglo[1],
+                    telefono: arreglo[2],
+                    correo: arreglo[3],
+                    nick: arreglo[4],
+                    contra: arreglo[5],
+                    puesto: arreglo[6]
+                }
+                axios.post("http://localhost:4000/Crear_Admin", json).then(function (response) {
+                    console.log(response);
+                });
+            }
+            alert('se han cargado los administradores')
+        }
+    }
+
     obtenerDatos(e){
 
         axios.post("http://localhost:4000/Crear_Admin",{
@@ -32,9 +59,12 @@ class admin extends React.Component {
         return (
             <div className="crear">
                 <Barra />
+                <div className="row justify-content-center align-items-center">
+                    <input type="file" onChange={e => this.importarCSV(e)} ref="this.file" accept=".csv" id="archivo" />
+                </div>
                 <div className="mt-5">
-                    <div class="card  carta mx-auto mb-3">
-                        <div class="card-body">
+                    <div className="card  carta mx-auto mb-3">
+                        <div className="card-body">
                             <form onSubmit={this.obtenerDatos}>
                                 <fieldset>
                                     <div className="form-group mx-auto">
@@ -43,11 +73,11 @@ class admin extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha de nacimiento</label>
-                                        <input type="text" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
+                                        <input type="date" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="telefono">Telefono</label>
-                                        <input type="text" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
+                                        <input type="number" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="correo">Correo Electronico</label>

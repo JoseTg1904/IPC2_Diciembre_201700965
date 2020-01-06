@@ -31,16 +31,16 @@ class colaInfo extends React.Component {
     }
 
     modificarDatos(e){
-            var path = "http://localhost:4000/Crear_Admin/actualizar/"+nombre_ant
+            var path = "http://localhost:4000/Crear_Cola/actualizar/"+nombre_ant
             console.log(path)
         axios.post(path,{
-            nombre: window.parent.document.getElementById("nombre-in").value,
-            fecha: window.parent.document.getElementById("fecha-in").value,
-            telefono: window.parent.document.getElementById("telefono-in").value,
-            correo: window.parent.document.getElementById("correo-in").value,
-            nick: window.parent.document.getElementById("nick-in").value,
-            contra: window.parent.document.getElementById("contraseña-in").value,
-            puesto: window.parent.document.getElementById("puesto-in").value
+            carne: window.parent.document.getElementById("carne").value,
+            nombre: window.parent.document.getElementById("nombre").value,
+            fecha: window.parent.document.getElementById("fecha").value,
+            telefono: window.parent.document.getElementById("telefono").value,
+            correo: window.parent.document.getElementById("correo").value,
+            nick: window.parent.document.getElementById("nick").value,
+            contra: window.parent.document.getElementById("contraseña").value
         }).then(function (res){
             console.log(res)
         })
@@ -66,7 +66,7 @@ class colaInfo extends React.Component {
                 <div className="mt-5">
                     <div class="card  carta mx-auto mb-3">
                         <div class="card-body">
-                            <form onSubmit={this.obtenerDatos}>
+                            <form onSubmit={this.modificarDatos}>
                                 <fieldset>
                                     <div className="form-group mx-auto">
                                         <label htmlFor="carne">Carne</label>
@@ -98,7 +98,7 @@ class colaInfo extends React.Component {
                                         <input type="text" className="form-control" id="contraseña" placeholder="Ingresa tu contraseña" />
                                     </div>
                                     <div className="but">
-                                    <button type="submit" className="btn but btn-primary">Registrar</button>
+                                    <button type="submit" className="btn but btn-primary">Modificar</button>
                                     <button type="button" onClick={this.eliminar} className="btn but btn-primary">Eliminar</button>
                                     </div>
                                 </fieldset>

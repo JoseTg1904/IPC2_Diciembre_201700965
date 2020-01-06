@@ -1,13 +1,18 @@
 const express = require('express');
 const router = express.Router();
-var admins = [];
+var admins = require('../Archivos/asignacion_cursos.json')
 var nombre = "";
+var fw = require('fs')
+
+
 
 //agregar curso 
 router.post('/',(req,res)=>{
     admins.push(req.body)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/asignacion_cursos.json', datos, 'utf-8')
 })
-
+ 
 //retorna el arreglo
 router.get('/', (req, res) => {
     res.json(admins)
@@ -16,6 +21,8 @@ router.get('/', (req, res) => {
 //eliminar asignacion
 router.delete('/:nombre', (req, res) => {
     eliminarValor(req.params.nombre,req.body)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/asignacion_cursos.json', datos, 'utf-8')
     res.send('eliminado')
 
 });

@@ -13,9 +13,10 @@ class Ingreso extends Component {
         switch (rol) {
             case ('Administrador'):
                 if (document.getElementById("nick").value === "admin" &&
-                    document.getElementById("contra").value === "admin") {     
-                        axios.post("http://localhost:4000/Crear_Admin/info",{nick:document.getElementById("nick").value})    
-                        window.location = '/Admin/Inicio'
+                    document.getElementById("contra").value === "admin") {
+                    axios.post("http://localhost:4000/Crear_Admin/info", { nick: document.getElementById("nick").value })
+                    localStorage.setItem('usuario','admin')
+                    window.location = '/Admin/Inicio'
                 } else {
                     var nick = document.getElementById("nick").value;
                     var contra = document.getElementById("contra").value;
@@ -24,7 +25,8 @@ class Ingreso extends Component {
                         contra: contra
                     }).then(function (response) {
                         if (response.data === 1000) {
-                            axios.post("http://localhost:4000/Crear_Admin/info",{nick:nick})    
+                            axios.post("http://localhost:4000/Crear_Admin/info", { nick: nick })
+                            localStorage.setItem('usuario',nick)
                             window.location = '/Admin/Inicio';
                         }
                         console.log(response)
@@ -32,48 +34,51 @@ class Ingreso extends Component {
                 }
                 break;
             case ('Colaborador'):
-                    var nick = document.getElementById("nick").value;
-                    var contra = document.getElementById("contra").value;
-                    axios.post("http://localhost:4000/Crear_Cola/validar", {
-                        nick: nick,
-                        contra: contra
-                    }).then(function (response) {
-                        if (response.data === 1000) {
-                            axios.post("http://localhost:4000/Crear_Cola/info",{nick:nick})    
-                            window.location = '/Cola/Inicio';
-                        }
-                        console.log(response)
-                    })
+                   nick = document.getElementById("nick").value;
+                   contra = document.getElementById("contra").value;
+                axios.post("http://localhost:4000/Crear_Cola/validar", {
+                    nick: nick,
+                    contra: contra
+                }).then(function (response) {
+                    if (response.data === 1000) {
+                        axios.post("http://localhost:4000/Crear_Cola/info", { nick: nick })
+                        localStorage.setItem('usuario',nick)
+                        window.location = '/Cola/Inicio';
+                    }
+                    console.log(response)
+                })
                 console.log('cola');
                 break;
             case ('Catedratico'):
-                    var nick = document.getElementById("nick").value;
-                    var contra = document.getElementById("contra").value;
-                    axios.post("http://localhost:4000/Crear_Cate/validar", {
-                        nick: nick,
-                        contra: contra
-                    }).then(function (response) {
-                        if (response.data === 1000) {
-                            axios.post("http://localhost:4000/Crear_Cate/info",{nick:nick})    
-                            window.location = '/Cate/Inicio';
-                        }
-                        console.log(response)
-                    })
+                    nick = document.getElementById("nick").value;
+                    contra = document.getElementById("contra").value;
+                axios.post("http://localhost:4000/Crear_Cate/validar", {
+                    nick: nick,
+                    contra: contra
+                }).then(function (response) {
+                    if (response.data === 1000) {
+                        axios.post("http://localhost:4000/Crear_Cate/info", { nick: nick })
+                        localStorage.setItem('usuario',nick)
+                        window.location = '/Cate/Inicio';
+                    }
+                    console.log(response)
+                })
                 console.log('cate');
                 break;
             case ('Estudiante'):
-                    var nick = document.getElementById("nick").value;
-                    var contra = document.getElementById("contra").value;
-                    axios.post("http://localhost:4000/Crear_Estu/validar", {
-                        nick: nick,
-                        contra: contra
-                    }).then(function (response) {
-                        if (response.data === 1000) {
-                            axios.post("http://localhost:4000/Crear_Estu/info",{nick:nick})    
-                            window.location = '/Estu/Inicio';
-                        }
-                        console.log(response)
-                    })
+                    nick = document.getElementById("nick").value;
+                    contra = document.getElementById("contra").value;
+                axios.post("http://localhost:4000/Crear_Estu/validar", {
+                    nick: nick,
+                    contra: contra
+                }).then(function (response) {
+                    if (response.data === 1000) {
+                        axios.post("http://localhost:4000/Crear_Estu/info", { nick: nick })
+                        localStorage.setItem('usuario',nick)
+                        window.location = '/Estu/Inicio';
+                    }
+                    console.log(response)
+                })
                 console.log('estu');
                 break;
             default:
@@ -97,7 +102,7 @@ class Ingreso extends Component {
                                             <input type="text"
                                                 id="nick"
                                                 className="nick"
-                                                class="form-control" aria-describedby="emailHelp"
+                                                class="form-control"
                                                 placeholder="Ingrese usuario" />
                                         </div>
                                         <div className="form-group">
@@ -108,8 +113,8 @@ class Ingreso extends Component {
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label for="combo">Tipo de cuenta</label>
-                                        <select class="form-control" id="combo">
+                                        <label htmlFor="combo">Tipo de cuenta</label>
+                                        <select className="form-control" id="combo">
                                             <option>Administrador</option>
                                             <option>Colaborador</option>
                                             <option>Catedratico</option>

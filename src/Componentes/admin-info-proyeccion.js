@@ -2,9 +2,6 @@ import React from 'react';
 import Barra from './Barra_Admin';
 import './admin-crear-orden.css'
 import axios from 'axios';
-var id = "";
-var intervalo;
-var it=0;
 
 class egreso extends React.Component {
 
@@ -72,7 +69,7 @@ class egreso extends React.Component {
                     <div className="card carta4 mx-auto mb-3 text-white bg-primary">
                         <div className="card-header">Alcance</div>
                         <div className="card-body">
-                            <input type="text" className="form-control" id="alcance" aria-describedy="emailHelp" />
+                            <input type="number" className="form-control" id="alcance"  />
                             <button type="button" onClick={this.modificarDatos} className="btn btn-primary" >Modificar</button>
                         </div>
                     </div>
@@ -83,15 +80,15 @@ class egreso extends React.Component {
                                 <fieldset>
                                     <div className="form-group mx-auto">
                                         <label htmlFor="ingresos">Ingresos</label>
-                                        <input type="number" className="form-control" id="ingresos" aria-describedby="emailHelp" />
+                                        <input readOnly type="number" className="form-control" id="ingresos" aria-describedby="emailHelp" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="egresos" >Egresos</label>
-                                        <input type="number" className="form-control" id="egresos" />
+                                        <input readOnly type="number" className="form-control" id="egresos" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="restante">Restante</label>
-                                        <input type="text" className="form-control" id="restante" />
+                                        <input readOnly type="text" className="form-control" id="restante" />
                                     </div>
                                 </fieldset>
                             </form>

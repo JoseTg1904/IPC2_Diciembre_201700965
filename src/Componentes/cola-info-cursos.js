@@ -27,6 +27,7 @@ class Cursos_Info extends React.Component {
                 console.log(data.carne)
                 Axios.post("http://localhost:4000/Asignacion_Curso", {
                     carne: data.carne,
+                    nombre:data.nombre,     
                     curso: nick
                 })
             })
@@ -37,7 +38,6 @@ class Cursos_Info extends React.Component {
             .then(res => res.json())
             .then(data => {
                 this.setState({ admins: data })
-                //this.componentDidMount();
             });
     }
 

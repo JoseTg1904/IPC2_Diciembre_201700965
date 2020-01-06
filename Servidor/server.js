@@ -27,6 +27,13 @@ server.use('/Crear_Curso', require('./Rutas/server_cursos'));
 server.use('/Presupuesto', require('./Rutas/server_presupuesto'));
 server.use('/Asignacion_Curso', require('./Rutas/server_asignacion_cursos'));
 server.use('/Noticias', require('./Rutas/server_noticias'));
+server.use('/Actividades',require('./Rutas/server_actividades'))
+server.use('/Tareas',require('./Rutas/server_tareas'))
+server.use('/Asignacion_Actividad',require('./Rutas/server_asignacion_actividades'))
+server.use('/Mensajes',require('./Rutas/server_mensajes'))
+server.use('/Entregas',require('./Rutas/server_entregas'))
+server.use('/Codigos',require('./Rutas/server_codigo'))
+server.use('/Puntuacion',require('./Rutas/server_puntuacion'))
 
 // archivos estaticos
 server.use(express.static(path.join('../public')));

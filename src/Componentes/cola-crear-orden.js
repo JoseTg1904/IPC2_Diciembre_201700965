@@ -7,7 +7,15 @@ var id = "";
 
 class orden extends React.Component {
 
-    validarCarne(){
+    componentDidMount() {
+        //this.obtenerDatos();
+        axios.get("http://localhost:4000/Presupuesto/identificador").then(res =>{
+            id = res.data;
+        })
+    }
+
+    obtenerDatos(e) {
+
         console.log('presionado')
         var ruta = "http://localhost:4000/Crear_Estu/validar/" + document.getElementById("carne").value;
         console.log(ruta)
@@ -18,29 +26,25 @@ class orden extends React.Component {
                 veri = true;
                 console.log(veri)
                 console.log('entre')
+                axios.post("http://localhost:4000/Presupuesto", {
+                    concepto: "Pago congreso",
+                    descripcion: document.getElementById("descripcion").value,
+                    total: document.getElementById("total").value,
+                    fecha: document.getElementById("fecha").value,
+                    codigo: id
+                }).then(function (response) {
+                    console.log(response);
+                });
+                document.getElementById("descripcion").value = ""
+                document.getElementById("total").value = ""
+                document.getElementById("fecha").value = ""
+            }else{
+                document.getElementById("descripcion").value = ""
+                document.getElementById("total").value = ""
+                document.getElementById("fecha").value = ""
+                alert('Estudiante no encontrado')
             }
         })
-    }
-
-    componentDidMount() {
-        //this.obtenerDatos();
-        axios.get("http://localhost:4000/Presupuesto/identificador").then(res =>{
-            id = res.data;
-        })
-    }
-
-    obtenerDatos(e) {
-        axios.post("http://localhost:4000/Presupuesto", {
-            concepto: document.getElementById("concepto").value,
-            total: document.getElementById("total").value,
-            fecha: document.getElementById("fecha").value,
-            codigo: id
-        }).then(function (response) {
-            console.log(response);
-        });
-        document.getElementById("concepto").value = ""
-        document.getElementById("total").value = ""
-        document.getElementById("fecha").value = ""
         e.preventDefault();
     }
 
@@ -53,8 +57,7 @@ class orden extends React.Component {
                             <div className="card-header">Validar</div>
                             <div className="card-body">
                                 <label htmlFor="carne">Carne</label>
-                                <input type="text" className="form-control" id="carne" aria-describedy="emailHelp" placeholder="Ingrese el numero de carnet a validar" />
-                                <button type="button" onClick={this.validarCarne} className="btn btn-primary" >Validar</button>
+                                <input type="text" className="form-control" id="carne" placeholder="Ingrese el numero de carnet a validar" />
                         </div>
                      </div>   
                     <div className="card  text-white bg-secondary carta5 mx-auto mb-3">
@@ -63,8 +66,8 @@ class orden extends React.Component {
                             <form onSubmit={this.obtenerDatos}>
                                 <fieldset>
                                     <div className="form-group mx-auto">
-                                        <label htmlFor="concepto">Concepto</label>
-                                        <input type="text" className="form-control" id="concepto" aria-describedby="emailHelp" placeholder="Ingresa el concepto de pago" />
+                                        <label htmlFor="descripcion">Descripcion</label>
+                                        <input type="text" className="form-control" id="descripcion" aria-describedby="emailHelp" placeholder="Ingresa el concepto de pago" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="total" >Total</label>
@@ -72,7 +75,7 @@ class orden extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha</label>
-                                        <input type="text" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
+                                        <input type="date" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
                                     </div>
                                     <div className="but">
                                         <button type="submit" className="btn but btn-primary">Registrar</button>

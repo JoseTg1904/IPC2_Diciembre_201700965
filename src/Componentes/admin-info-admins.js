@@ -14,6 +14,12 @@ class Ads_Info extends React.Component {
         this.obtenerDatos = this.obtenerDatos.bind(this);
     }
 
+    importarCSV(){
+        Axios.get("http://localhost:4000/Crear_Admin/csv").then(res =>{
+            console.log(res)
+        })
+    }
+
     componentDidMount() {
         this.obtenerDatos()
         this.recargar()
@@ -55,6 +61,7 @@ class Ads_Info extends React.Component {
         return (
             <div className="Tabla-ad">
                 <Barra />
+                <button type="button" className="btn btn-primary" onClick={this.importarCSV}>Importar csv</button>
                 <table className="table table-dark table-hover">
                     <thead>
                         <tr>

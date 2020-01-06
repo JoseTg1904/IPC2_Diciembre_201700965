@@ -1,0 +1,12 @@
+import React from 'react';
+import Pagina from '../Componentes/admin-puntuar-actividad';
+
+class proyeccion extends React.Component{
+    render(){
+        return(
+            <Pagina />
+        )
+    };
+}
+
+export default proyeccion;

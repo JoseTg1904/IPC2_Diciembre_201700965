@@ -6,7 +6,7 @@ import './Registro_Estudiante.css'
 class Registro_Estudiante extends React.Component {
 
     obtenerDatos(e){
-
+        console.log( document.getElementById("fecha").value )
         axios.post("http://localhost:4000/Crear_Estu",{
             carne: document.getElementById("carne").value,
             nombre: document.getElementById("nombre").value,
@@ -16,7 +16,8 @@ class Registro_Estudiante extends React.Component {
             universidad: document.getElementById("uni").value,
             nacionalidad: document.getElementById("naci").value,
             nick: document.getElementById("nick").value,
-            contra: document.getElementById("contraseña").value
+            contra: document.getElementById("contraseña").value,
+            pago: false
         }).then(function (response){
             console.log(response);
         });
@@ -29,6 +30,7 @@ class Registro_Estudiante extends React.Component {
         document.getElementById("naci").value=""
         document.getElementById("nick").value=""
         document.getElementById("contraseña").value =""
+        alert('Registro realizado con exito')
         e.preventDefault();
     }
 
@@ -43,7 +45,7 @@ class Registro_Estudiante extends React.Component {
                                 <fieldset>
                                     <div className="form-group mx-auto">
                                         <label htmlFor="carne">Carne</label>
-                                        <input type="text" className="form-control" id="carne" 
+                                        <input type="number" className="form-control" id="carne" 
                                         aria-describedby="emailHelp" placeholder="Ingresa tu carne" />
                                     </div>
                                     <div className="form-group">
@@ -52,11 +54,11 @@ class Registro_Estudiante extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha de nacimiento</label>
-                                        <input type="text" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
+                                        <input type="date" className="form-control" id="fecha" placeholder="Ingresa tu fecha de nacimiento" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="telefono">Telefono</label>
-                                        <input type="text" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
+                                        <input type="number" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="correo">Correo electronico</label>

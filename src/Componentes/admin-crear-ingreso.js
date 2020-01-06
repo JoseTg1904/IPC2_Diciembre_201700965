@@ -16,7 +16,7 @@ class ingreso extends React.Component {
     obtenerDatos(e) {
         axios.post("http://localhost:4000/Presupuesto", {
             concepto: document.getElementById("concepto").value,
-            total: document.getElementById("total").value,
+            total: Number(document.getElementById("total").value),
             fecha: document.getElementById("fecha").value,
             codigo: id
         }).then(function (response) {
@@ -51,7 +51,7 @@ class ingreso extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha</label>
-                                        <input type="text" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
+                                        <input type="date" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
                                     </div>
                                     <div className="but">
                                         <button type="submit" className="btn but btn-primary">Registrar</button>

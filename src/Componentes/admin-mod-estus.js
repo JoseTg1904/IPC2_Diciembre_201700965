@@ -2,6 +2,8 @@ import React from 'react';
 import './admin-mod-estus.css'
 import axios from 'axios';
 var nombre_ant = "";
+var pago = false
+
 
 class adminMod extends React.Component {
 
@@ -14,6 +16,7 @@ class adminMod extends React.Component {
                 console.log("valor del json " + result.data.nombre)
                 var info = result.data;
                 nombre_ant = info.nick;
+                pago = info.pago
                 console.log(nombre_ant)
                 console.log(info)
                 document.getElementById("carne-in").value = info.carne
@@ -40,7 +43,8 @@ class adminMod extends React.Component {
             universidad: document.getElementById("uni").value,
             nacionalidad: document.getElementById("naci").value,
             nick: window.parent.document.getElementById("nick-in").value,
-            contra: window.parent.document.getElementById("contraseña-in").value
+            contra: window.parent.document.getElementById("contraseña-in").value,
+            pago: pago
         }).then(function (res) {
             console.log(res)
         })

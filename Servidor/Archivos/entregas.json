@@ -1,0 +1,54 @@
+[
+    {
+        "carne": "201700965",
+        "entrega": {
+            "codigo": "I-0",
+            "tipo": "Insumo",
+            "nombre": "lkjklj",
+            "descripcion": "dfdfdf",
+            "cantidad": "34",
+            "restante": "34"
+        },
+        "fecha": "3/1/2020",
+        "hora": "20:22"
+    },
+    {
+        "carne": "201700965",
+        "entrega": {
+            "codigo": "I-0",
+            "tipo": "Almuerzo",
+            "nombre": "lkjlkj",
+            "descripcion": "sdf",
+            "cantidad": "34",
+            "restante": 30
+        },
+        "fecha": "3/1/2020",
+        "hora": "20:23"
+    },
+    {
+        "carne": "201700965",
+        "entrega": {
+            "codigo": "I-0",
+            "tipo": "Coffe break",
+            "nombre": "jose",
+            "descripcion": "sdfd",
+            "cantidad": "12",
+            "restante": 5
+        },
+        "fecha": "3/1/2020",
+        "hora": "20:23"
+    },
+    {
+        "carne": "201700965",
+        "entrega": {
+            "codigo": "I-0",
+            "tipo": "Coffe break",
+            "nombre": "jose",
+            "descripcion": "sdfd",
+            "cantidad": "12",
+            "restante": 5
+        },
+        "fecha": "3/1/2020",
+        "hora": "20:23"
+    }
+]

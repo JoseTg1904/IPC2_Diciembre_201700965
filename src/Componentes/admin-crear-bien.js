@@ -27,7 +27,7 @@ class admin extends React.Component {
                 for(var i=0;i<data.length;i++){
                     array.push(data[i])
                 }
-                for(var i=0;i<data1.length;i++){
+                for(/*var*/ i=0;i<data1.length;i++){
                     array.push(data1[i])
                 }
                 this.setState({ admins: array })
@@ -37,12 +37,6 @@ class admin extends React.Component {
     }
 
     obtenerDatos(e) {
-        /*var seleccionados = [];
-        for(var i=0;i<document.getElementById("encargados").length;i++){
-            if(document.getElementById("encargados").options[i].selected === true ){
-                seleccionados.push(" "+document.getElementById("encargados").options[i].value)
-            }
-        }*/
         axios.post("http://localhost:4000/Crear_Bien", {
             codigo: document.getElementById("codigo").value,
             nombre: document.getElementById("nombre").value,
@@ -69,7 +63,7 @@ class admin extends React.Component {
             <div className="crear">
                 <Barra />
                 <div className="mt-5">
-                    <div className="card  carta mx-auto mb-3">
+                    <div className="card carta100 mx-auto mb-3">
                         <div className="card-body">
                             <form onSubmit={this.obtenerDatos}>
                                 <fieldset>
@@ -88,7 +82,7 @@ class admin extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="cantidad">Cantidad</label>
-                                        <input type="text" className="form-control" id="cantidad" placeholder="Ingresa la cantidad" />
+                                        <input type="number" className="form-control" id="cantidad" placeholder="Ingresa la cantidad" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="encargados">Encargado</label>

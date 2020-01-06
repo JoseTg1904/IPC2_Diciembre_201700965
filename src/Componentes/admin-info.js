@@ -9,8 +9,6 @@ class adminInfo extends React.Component {
     componentDidMount(){
         axios.get("http://localhost:4000/Crear_Admin/a/nick").then( function (response)
         {
-            localStorage.setItem('usuario', response.data);
-            console.log(localStorage.getItem('usuario'))
             var ruta = "http://localhost:4000/Crear_Admin/bus/"+ localStorage.getItem('usuario');
             console.log(ruta + " " + response.data)
             axios.get(ruta,{

@@ -1,8 +1,8 @@
 import React from 'react';
 import Barra from './Barra_Cola';
-import Axios from 'axios';
-var it = 0;
-var intervalo = 0;
+//import Axios from 'axios';
+//var it = 0;
+//var intervalo = 0;
 
 class Conta_Info extends React.Component {
 

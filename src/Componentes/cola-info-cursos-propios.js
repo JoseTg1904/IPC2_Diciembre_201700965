@@ -1,6 +1,6 @@
 import React from 'react';
 import Barra from './Barra_Cola';
-import Axios from 'axios';
+//import Axios from 'axios';
 
 
 class Cursos_Info extends React.Component {

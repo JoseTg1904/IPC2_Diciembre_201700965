@@ -1,6 +1,7 @@
 import React from 'react';
 import Barra from './Barra_Admin';
 import './admin-crear-orden.css'
+import './admin-crear-comentario.css'
 import axios from 'axios';
 var id = "";
 var inputs = [];
@@ -19,6 +20,7 @@ class comentario extends React.Component {
         var ru = "http://localhost:4000/Noticias/" + codigo 
         axios.post(ru,{
             codigo:id,
+            creador: localStorage.getItem('usuario'),
             contenido: document.getElementById(codigo).value
         })
             window.location.reload(true)
@@ -44,22 +46,26 @@ class comentario extends React.Component {
         console.log(localStorage.getItem('usuario'))
     }
 
-    /*obtenerDatos(e) {
-        axios.post("http://localhost:4000/Noticias", {
-            codigo: id,
-            titulo: document.getElementById("titulo").value,
-            contenido: document.getElementById("contenido").value,
-            comentarios: []
-        }).then(function (response) {
-            console.log(response);
-            axios.get("http://localhost:4000/Noticias/id_Com").then(res => {
-                id = res.data;
-            })
-        });
-        document.getElementById("titulo").value = ""
-        document.getElementById("contenido").value = ""
-        e.preventDefault();
-    }*/
+    editarNoticia(idNot){
+        console.log(idNot)
+    }
+
+    eliminarNoticia(idNot){
+        var ruta = "http://localhost:4000/Noticias/elNot/"+idNot
+        axios.delete(ruta).then(res =>{
+            console.log(res)
+        })
+        window.location.reload(true)
+    }
+
+    eliminar(idNot,idComen){
+        var ruta = "http://localhost:4000/Noticias/elComen/" + idNot + "/" + idComen
+        axios.delete(ruta).then(res=>{
+            console.log(res)
+        })
+        window.location.reload(true)
+        }
+
 
     render() {
         return (
@@ -68,10 +74,14 @@ class comentario extends React.Component {
                 {
                     this.state.noticias.map(noticia => {
                         return (
-                            <div className="mt-2">
-                                <div className="card  text-white bg-primary carta5 mx-auto mb-3">
+                            <div key={noticia.codigo} className="mt-2">
+                                <div className="card  text-white bg-primary carta555 mx-auto mb-3">
                                     <div className="card-header">
+                                        <span>    
                                         {noticia.titulo}
+                                        <button type="button" onClick={() =>  this.eliminarNoticia(noticia.codigo)}  className="btn btn-primary btn-sm ml-5" >Eliminar</button>
+                                        {/*<button type="button" onClick={() =>  this.editarNoticia(noticia.codigo)}  className="btn btn-primary btn-sm" >Editar</button>*/}
+                                        </span>
                                     </div>
                                     <div className="card-body">
                                         <form>
@@ -80,7 +90,7 @@ class comentario extends React.Component {
                                             </fieldset>
                                         </form>
                                     </div>
-                                    <div className="card tex-white bg-secondary carta4 mx-auto">
+                                    <div className="card tex-white bg-secondary carta444 mx-auto">
                                         <div className="card-header">
                                             Comentarios
                                         </div>
@@ -89,8 +99,11 @@ class comentario extends React.Component {
                                                 {noticia.comentarios.map(comen => {
                                                     inputs.push(noticia.codigo)
                                                     return (
-                                                        <div>
-                                                        <label>{comen.contenido}</label>
+                                                        <div className="row justify-content-end "key={comen.codigo}>
+                                                        <span>
+                                                        <label >{comen.creador+" - "+comen.contenido}</label>
+                                                        <button type="button" onClick={() =>  this.eliminar(noticia.codigo,comen.codigo)}  className=" btn btn-secondary btn-sm" >Eliminar</button>
+                                                        </span>
                                                         </div>
                                                     )
                                                 })
@@ -113,25 +126,5 @@ class comentario extends React.Component {
         )
     };
 }
-
-/* <fieldset>*/
-/*</fieldset>*/
-
-/*<form onSubmit={this.obtenerDatos}>
-                   <fieldset>
-                       <div className="form-group">
-                           <label htmlFor="titulo" >Titulo</label>
-                           <input type="text" className="form-control" id="titulo" placeholder="Ingresa el titulo de la noticia" />
-                       </div>
-                       <div className="form-group">
-                           <label htmlFor="contenido">Contenido</label>
-                           <textarea type="text" className="form-control" 
-                           id="contenido" rows="3" placeholder="Ingrese el contenido de la noticia" />
-                       </div>
-                       <div className="but">
-                           <button type="submit" className="btn but btn-primary">Registrar</button>
-                       </div>
-                   </fieldset>
-   </form>*/
 
 export default comentario;

@@ -3,11 +3,41 @@ import Barra from './Barra_Admin';
 import './admin-usu-crear-estu.css'
 import axios from 'axios';
 
+
 class cola extends React.Component {
 
-    obtenerDatos(e){
+    importarCSV(e) {
+        let archivo = e.target.files
+        let lector = new FileReader()
+        lector.readAsText(archivo[0])
+        lector.onload = e => {
+            let info = e.target.result
+            var dataArray = info.split(/\r?\n/);
+            for (var i = 0; i < dataArray.length; i++) {
+                var arreglo = dataArray[i].split(",");
+                var json = {
+                    carne: arreglo[0],
+                    nombre: arreglo[1],
+                    fecha: arreglo[2],
+                    telefono: arreglo[3],
+                    correo: arreglo[4],
+                    universidad: arreglo[5],
+                    nacionalidad: arreglo[6],
+                    nick: arreglo[7],
+                    contra: arreglo[8],
+                    pago: arreglo[9]
+                }
+                axios.post("http://localhost:4000/Crear_Estu", json).then(function (response) {
+                    console.log(response);
+                });
+            }
+            alert('se han cargado los estudiantes')
+        }
+    }
 
-        axios.post("http://localhost:4000/Crear_Estu",{
+    obtenerDatos(e) {
+
+        axios.post("http://localhost:4000/Crear_Estu", {
             carne: document.getElementById("carne").value,
             nombre: document.getElementById("nombre").value,
             fecha: document.getElementById("fecha").value,
@@ -16,19 +46,20 @@ class cola extends React.Component {
             universidad: document.getElementById("uni").value,
             nacionalidad: document.getElementById("naci").value,
             nick: document.getElementById("nick").value,
-            contra: document.getElementById("contraseña").value
-        }).then(function (response){
+            contra: document.getElementById("contraseña").value,
+            pago: false
+        }).then(function (response) {
             console.log(response);
         });
-        document.getElementById("carne").value=""
-        document.getElementById("nombre").value=""
-        document.getElementById("fecha").value=""
-        document.getElementById("telefono").value=""
-        document.getElementById("correo").value=""
-        document.getElementById("uni").value=""
-        document.getElementById("naci").value=""
-        document.getElementById("nick").value=""
-        document.getElementById("contraseña").value =""
+        document.getElementById("carne").value = ""
+        document.getElementById("nombre").value = ""
+        document.getElementById("fecha").value = ""
+        document.getElementById("telefono").value = ""
+        document.getElementById("correo").value = ""
+        document.getElementById("uni").value = ""
+        document.getElementById("naci").value = ""
+        document.getElementById("nick").value = ""
+        document.getElementById("contraseña").value = ""
         e.preventDefault();
     }
 
@@ -36,15 +67,18 @@ class cola extends React.Component {
         return (
             <div className="crear">
                 <Barra />
+                <div className="row justify-content-center align-items-center">
+                    <input type="file" onChange={e => this.importarCSV(e)} ref="this.file" accept=".csv" id="archivo" />
+                </div>
                 <div className="mt-5">
-                    <div class="card  car mx-auto mb-3">
-                        <div class="card-body">
+                    <div className="card  car mx-auto mb-3">
+                        <div className="card-body">
                             <form onSubmit={this.obtenerDatos}>
                                 <fieldset>
                                     <div className="form-group mx-auto">
                                         <label htmlFor="carne">Carne</label>
-                                        <input type="text" className="form-control" id="carne" 
-                                        aria-describedby="emailHelp" placeholder="Ingresa tu carne" />
+                                        <input type="number" className="form-control" id="carne"
+                                            aria-describedby="emailHelp" placeholder="Ingresa tu carne" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="nombre">Nombre</label>
@@ -52,11 +86,11 @@ class cola extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha de nacimiento</label>
-                                        <input type="text" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
+                                        <input type="date" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="telefono">Telefono</label>
-                                        <input type="text" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
+                                        <input type="number" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="correo">Correo electronico</label>
@@ -79,7 +113,7 @@ class cola extends React.Component {
                                         <input type="text" className="form-control" id="contraseña" placeholder="Ingresa tu contraseña" />
                                     </div>
                                     <div className="but">
-                                    <button type="submit" className="btn but btn-primary">Registrar</button>
+                                        <button type="submit" className="btn but btn-primary">Registrar</button>
                                     </div>
                                 </fieldset>
                             </form>

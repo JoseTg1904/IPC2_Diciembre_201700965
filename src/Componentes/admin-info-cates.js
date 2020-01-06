@@ -53,10 +53,18 @@ class Cates_Info extends React.Component {
             });
     }
 
+    
+    importarCSV(){
+        Axios.get("http://localhost:4000/Crear_Cate/csv").then(res =>{
+            console.log(res)
+        })
+    }
+
     render() {
         return (
             <div className="Tabla-ad">
                 <Barra />
+                <button type="button" className="btn btn-primary" onClick={this.importarCSV}>Importar csv</button>
                 <table className="table table-dark table-hover">
                     <thead>
                         <tr>

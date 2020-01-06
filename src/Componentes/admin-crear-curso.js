@@ -44,10 +44,35 @@ class curso extends React.Component {
         e.preventDefault();
     }
 
+    importarCSV(e) {
+        let archivo = e.target.files
+        let lector = new FileReader()
+        lector.readAsText(archivo[0])
+        lector.onload = e => {
+            let info = e.target.result
+            var dataArray = info.split(/\r?\n/);
+            for (var i = 0; i < dataArray.length; i++) {
+                var arreglo = dataArray[i].split(",");
+                var json = {
+                    codigo: arreglo[0],
+                    nombre: arreglo[1],
+                    seccion: arreglo[2],
+                    universidad: arreglo[3],
+                    titular: arreglo[4]
+                }
+                axios.post("http://localhost:4000/Crear_Curso", json).then(function (response) {
+                    console.log(response);
+                });
+            }
+            alert('se han cargado los cursos')
+        }
+    }
+
     render() {
         return (
             <div className="crear">
                 <Barra />
+                <button type="button" className="btn btn-primary" onClick={this.importarCSV}>Importar csv</button>
                 <div className="mt-5">
                     <div className="card  carta1 mx-auto mb-3">
                         <div className="card-body">

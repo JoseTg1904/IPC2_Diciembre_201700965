@@ -1,8 +1,8 @@
 import React from 'react';
 import Barra from './Barra_Cola';
-import Axios from 'axios';
-var it = 0;
-var intervalo = 0;
+//import Axios from 'axios';
+//var it = 0;
+//var intervalo = 0;
 
 class Bienes_Info extends React.Component {
 
@@ -47,17 +47,36 @@ class Bienes_Info extends React.Component {
                     <tbody>
                         {
                             this.state.admins.map(admin => {
-                                return (
-                                    <tr className="table-datos table-active" key={admin.codigo}>
-                                        <td>{admin.codigo}</td>
-                                        <td>{admin.nombre}</td>
-                                        <td>{admin.descripcion}</td>
-                                        <td>{admin.cantidad}</td>
-                                        <td>{admin.encargados}</td>
-                                        <td>{admin.ubicacion}</td>
-                                        <td>{admin.estado}</td>
-                                    </tr>
-                                )
+                                if(admin.tipo === undefined){
+                                    return (
+                                        <tr className="table-datos table-active" key={admin.codigo}>
+                                            <td>{admin.codigo}</td>
+                                            <td>{admin.nombre}</td>
+                                            <td>{admin.descripcion}</td>
+                                            <td>{admin.cantidad}</td>
+                                            <td>{admin.encargados}</td>
+                                            <td>{admin.ubicacion}</td>
+                                            <td>{admin.estado}</td>
+                                            <td>
+                                                <button onClick={() => this.modificar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Editar</button>
+                                                <button onClick={() => this.eliminar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    )
+                                }else{
+                                    return (
+                                        <tr className="table-datos table-active" key={admin.codigo}>
+                                            <td>{admin.codigo}</td>
+                                            <td>{admin.tipo + "-" + admin.nombre}</td>
+                                            <td>{admin.descripcion}</td>
+                                    <td>{"Original: "+ admin.cantidad + " Restantes: "}</td>
+                                            <td>
+                                                <button onClick={() => this.modificar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Editar</button>
+                                                <button onClick={() => this.eliminar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
                             })
                         }
                     </tbody>

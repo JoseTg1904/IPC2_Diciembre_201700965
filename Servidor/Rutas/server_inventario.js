@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-var admins = []; //ingreso
-var egresos = []; //egresos
-var boletos = []; //solo boletos
+var admins = require('../Archivos/inventario_ingreso.json') //ingreso
+var egresos = require('../Archivos/inventario_egreso.json'); //egresos
+var boletos = require('../Archivos/inventario_boleto.json') //solo boletos
 var ingreso = 0;
 var egreso = 0;
 var meta = 0;
-var identificador = 0;
+var identificador = require('../Archivos/identificador.json')
 var nombre = "";
+var fw = require('fs')
 
 //retorna los ingresos
 router.get('/', (req, res) => {
@@ -39,28 +40,42 @@ router.get('/estimado', (req, res) => {
     res.json(admins)
 });
 
-//retorna los egresos
+//retorna un identificador
 router.get('/identificador', (req, res) => {
     var id = "I-"+identificador 
     res.json(id)
     identificador++;
+    fw.writeFileSync('Archivos/identificador.json',identificador, 'utf-8')
 });
+
+router.get('/descontar/:id',(req,res)=>{
+    descontar(req.params.id)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/inventario_ingreso.json', datos, 'utf-8')
+    res.send("todo bien todo correcto y yo que me alegro")
+})
 
 //añade a los ingresos
 router.post('/', (req, res) => {
     admins.push(req.body)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/inventario_ingreso.json', datos, 'utf-8')
     res.json('recibido');
 });
 
 //añade a los boletos
 router.post('/boletos', (req, res) => {
     boletos.push(req.body)
+    var datos = JSON.stringify(boletos)
+    fw.writeFileSync('Archivos/inventario_boleto.json', datos, 'utf-8')
     res.json('recibido');
 });
 
 //añade a los egresos
 router.post('/egresos', (req, res) => {
     egresos.push(req.body)
+    var datos = JSON.stringify(egresos)
+    fw.writeFileSync('Archivos/inventario_egreso.json', datos, 'utf-8')
     res.json('recibido');
 });
 
@@ -95,6 +110,18 @@ router.delete('/:nombre', (req, res) => {
     res.send('eliminado')
 
 });
+
+function descontar(id){
+    for(var i=0;i<admins.length;i++){
+        if(admins[i]['codigo'] === id){
+            var res = Number(admins[i]['restante'])
+            console.log(res)
+            res = res - 1
+            console.log(res)
+            admins[i]['restante'] = res 
+        }
+    }
+}
 
 function eliminarValor(valorABuscar) {
     for (var i = 0; i< admins.length; i++) {

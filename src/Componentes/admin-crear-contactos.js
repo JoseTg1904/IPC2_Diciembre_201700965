@@ -37,12 +37,6 @@ class contacto extends React.Component {
     }
 
     obtenerDatos(e) {
-       /* var seleccionados = [];
-        for(let i=0;i<document.getElementById("encargado").length;i++){
-            if(document.getElementById("encargado").options[i].selected === true ){
-                seleccionados.push(" "+document.getElementById("encargado").options[i].value)
-            }
-        }*/
         axios.post("http://localhost:4000/Crear_Conta", {
             nombre: document.getElementById("nombre").value,
             telefono: document.getElementById("telefono").value,
@@ -64,12 +58,41 @@ class contacto extends React.Component {
         e.preventDefault();
     }
 
+    importarCSV(e) {
+        let archivo = e.target.files
+        let lector = new FileReader()
+        lector.readAsText(archivo[0])
+        lector.onload = e => {
+            let info = e.target.result
+            var dataArray = info.split(/\r?\n/);
+            for (var i = 0; i < dataArray.length; i++) {
+                var arreglo = dataArray[i].split(",");
+                var json = {
+                    nombre: arreglo[0],
+                    telefono: arreglo[1],
+                    correo: arreglo[2],
+                    direccion: arreglo[3],
+                    rol: arreglo[4],
+                    oportunidades: arreglo[5],
+                    encargado: arreglo[6]
+                }
+                axios.post("http://localhost:4000/Crear_Conta", json).then(function (response) {
+                    console.log(response);
+                });
+            }
+            alert('se han cargado los contactos')
+        }
+    }
+
     render() {
         return (
             <div className="crear">
                 <Barra />
+                <div className="row justify-content-center align-items-center">
+                    <input type="file" onChange={e => this.importarCSV(e)} ref="this.file" accept=".csv" id="archivo" />
+                </div>
                 <div className="mt-5">
-                    <div className="card  carta mx-auto mb-3">
+                    <div className="card  carta50 mx-auto mb-3">
                         <div className="card-body">
                             <form onSubmit={this.obtenerDatos}>
                                 <fieldset>
@@ -79,7 +102,7 @@ class contacto extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="telefono" >Telefono</label>
-                                        <input type="text" className="form-control" id="telefono" placeholder="Ingresa el telefono" />
+                                        <input type="number" className="form-control" id="telefono" placeholder="Ingresa el telefono" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="correo">Correo</label>

@@ -44,7 +44,7 @@ class Registro_Catedratico extends React.Component {
                                 <fieldset>
                                     <div className="form-group mx-auto">
                                         <label htmlFor="registro">Registro de personal</label>
-                                        <input type="text" className="form-control" id="registro"
+                                        <input type="number" className="form-control" id="registro"
                                             aria-describedby="emailHelp" placeholder="Ingresa tu registro de personal" />
                                     </div>
                                     <div className="form-group">
@@ -53,11 +53,11 @@ class Registro_Catedratico extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha de nacimiento</label>
-                                        <input type="text" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
+                                        <input type="date" className="form-control" id="fecha" placeholder="Ingresa tu fecha de nacimiento" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="telefono">Telefono</label>
-                                        <input type="text" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
+                                        <input type="number" className="form-control" id="telefono" placeholder="Ingresa tu telefono" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="correo">Correo electronico</label>

@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-var admins = [];
+var admins = require('../Archivos/catedraticos.json')
 var nombre = "";
+var fw = require('fs')
 
 //retorna el arreglo
 router.get('/', (req, res) => {
@@ -34,21 +35,56 @@ router.post('/info', (req, res) => {
 //añade al arreglo
 router.post('/', (req, res) => {
     admins.push(req.body)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/catedraticos.json', datos, 'utf-8')
     res.json('recibido');
 });
 
 //actualizar arreglo
 router.post('/actualizar/:nombre', (req, res) => {
     cambiarValor(req.params.nombre, req.body)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/catedraticos.json', datos, 'utf-8')
     res.send('actualizado')
 });
 
 //eliminar arreglo
 router.delete('/:nombre', (req, res) => {
     eliminarValor(req.params.nombre)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/catedraticos.json', datos, 'utf-8')
     res.send('eliminado')
 
 });
+
+router.get('/csv', (req, res) => {
+    crearCSV()
+    res.json('ya')
+})
+
+function crearCSV() {
+    var text = ""
+    for (var i = 0; i < admins.length; i++) {
+        text = text + admins[i]['registro'] + "," + admins[i]['nombre'] + "," +
+            admins[i]['fecha'] + "," + admins[i]['telefono'] + "," + admins[i]['correo'] + "," +
+            admins[i]['universidad'] + "," + admins[i]['nick'] + "," +
+            admins[i]['contra'] + "\n"
+    }
+    fw.exists("C:\\Users\\chepe\\Desktop\\catedraticos.csv", function (exists) {
+        if (exists) {
+            console.log(exists)
+            fw.unlinkSync('C:\\Users\\chepe\\Desktop\\catedraticos.csv');
+        } else {
+            fw.appendFile("C:\\Users\\chepe\\Desktop\\catedraticos.csv", text, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log('ya')
+            })
+        }
+    });
+    return (text)
+}
 
 function validarSesion(valorABuscar) {
     for (var i = 0; i < admins.length; i++) {

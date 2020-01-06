@@ -22,7 +22,7 @@ class egreso extends React.Component {
         if (document.getElementById("ide").value === '') {
             axios.post("http://localhost:4000/Presupuesto/egresos", {
                 concepto: document.getElementById("concepto").value,
-                total: document.getElementById("total").value,
+                total: Number(document.getElementById("total").value),
                 fecha: document.getElementById("fecha").value,
                 codigo:id
             }).then(function (response) {
@@ -75,11 +75,11 @@ class egreso extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="fecha">Fecha</label>
-                                        <input type="text" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
+                                        <input type="date" className="form-control" id="fecha" placeholder="dd/mm/aaaa" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="ide">No. Factura</label>
-                                        <input type="text" className="form-control" id="ide" placeholder="dd/mm/aaaa" />
+                                        <input type="text" className="form-control" id="ide" placeholder="Ingrese el numero de la factura" />
                                     </div>
                                     <div className="but">
                                         <button type="submit" className="btn but btn-primary">Registrar</button>

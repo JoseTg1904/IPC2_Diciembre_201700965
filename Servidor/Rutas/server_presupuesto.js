@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-var admins = []; //ingreso
-var egresos = []; //egresos
-var boletos = []; //solo boletos
+var admins = require('../Archivos/presupuesto_ingreso.json') //ingreso
+var egresos = require('../Archivos/presupuesto_egreso.json')//egresos
+var boletos = require('../Archivos/presupuesto_boleto.json')//solo boletos
 var ingreso = 0;
 var egreso = 0;
 var meta = 0;
-var identificador = 0;
+var identificador = require('../Archivos/identificador.json')//
 var nombre = "";
+var fw = require('fs')
 
 //retorna los ingresos
 router.get('/ingresos', (req, res) => {
@@ -49,13 +50,14 @@ router.get('/identificador', (req, res) => {
     var id = "I-"+identificador 
     res.json(id)
     identificador = identificador+1;
+    fw.writeFileSync('Archivos/identificador.json',identificador, 'utf-8')
 });
 
 //añade a los ingresos
 router.post('/', (req, res) => {
     admins.push(req.body)
-   // actualizarIngreso();
-    console.log(ingreso)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/presupuesto_ingreso.json', datos, 'utf-8')
     res.json('recibido');
 });
 
@@ -63,6 +65,8 @@ router.post('/', (req, res) => {
 //añade a los egresos
 router.post('/egresos', (req, res) => {
     egresos.push(req.body)
+    var datos = JSON.stringify(egresos)
+    fw.writeFileSync('Archivos/presupuesto_egreso.json', datos, 'utf-8')
     //actualizarEgreso();
     console.log(egresos)
     res.json('recibido');
@@ -75,11 +79,15 @@ router.post('/:meta', (req,res) =>{
 //eliminar ingreso
 router.delete('/ingreso/:codigo',(req,res)=>{
     eliminarIngreso(req.params.codigo)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/presupuesto_ingreso.json', datos, 'utf-8')
     res.send('eliminado')
 })
 
 router.delete('/egreso/:codigo',(req,res)=>{
     eliminarEgreso(req.params.codigo)
+    var datos = JSON.stringify(egresos)
+    fw.writeFileSync('Archivos/presupuesto_egreso.json', datos, 'utf-8')
     res.send('eliminado')
 })
 

@@ -41,15 +41,33 @@ class Ingresos_Info extends React.Component {
                     <tbody>
                         {
                             this.state.admins.map(admin => {
+                                if(admin.descripcion === undefined){
+                                    return (
+                                        <tr className="table-datos table-active" key={admin.codigo}>
+                                            <td>{admin.codigo}</td>
+                                            <td>{admin.concepto}</td>
+                                            <td>{admin.fecha}</td>
+                                            <td>{admin.total}</td>
+                                            <td>{admin.titular}</td>
+                                            <td>
+                                            <button onClick={() => this.eliminar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    )
+                                }else{
                                 return (
                                     <tr className="table-datos table-active" key={admin.codigo}>
                                         <td>{admin.codigo}</td>
-                                        <td>{admin.concepto}</td>
+                                        <td>{admin.concepto+" "+admin.descripcion}</td>
                                         <td>{admin.fecha}</td>
                                         <td>{admin.total}</td>
                                         <td>{admin.titular}</td>
+                                        <td>
+                                        <button onClick={() => this.eliminar(admin.codigo)} type="button" className="btn btn-primary btn-dark btn-lg">Eliminar</button>
+                                        </td>
                                     </tr>
                                 )
+                                }
                             })
                         }
                     </tbody>

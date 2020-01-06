@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import './Inicio.css';
 import {Link} from 'react-router-dom';
 
-/*
-despues del </a>
-<span class="sr-only ">(current)</span>
-*/
-
 class Inicio extends Component {
     render() {
         return (

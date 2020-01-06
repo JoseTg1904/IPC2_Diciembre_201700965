@@ -70,7 +70,7 @@ class bienes extends React.Component {
                 for(var i=0;i<data.length;i++){
                     array.push(data[i])
                 }
-                for(var i=0;i<data1.length;i++){
+                for( i=0;i<data1.length;i++){
                     array.push(data1[i])
                 }
                 this.setState({vars: array })

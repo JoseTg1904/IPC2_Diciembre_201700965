@@ -18,13 +18,16 @@ class ingreso extends React.Component {
             codigo: id,    
             titulo: document.getElementById("titulo").value,
             contenido: document.getElementById("contenido").value,
+            creador: localStorage.getItem('usuario'),
             comentarios: []
         }).then(function (response) {
             console.log(response);
-            axios.get("http://localhost:4000/Noticias/id_Not").then(res =>{
-                id = res.data;
-            })
+ 
         });
+        axios.get("http://localhost:4000/Noticias/id_Not").then(res =>{
+            id = res.data;
+            console.log(id)
+        })
         document.getElementById("titulo").value = ""
         document.getElementById("contenido").value = ""
         e.preventDefault();

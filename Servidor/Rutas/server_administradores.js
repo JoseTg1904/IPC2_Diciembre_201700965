@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-var admins = [];
+var admins = require('../Archivos/admins.json')
 var nombre = "";
+var fw = require('fs')
 
 //retorna el arreglo
 router.get('/', (req, res) => {
@@ -34,6 +35,8 @@ router.post('/info', (req, res) => {
 //añade al arreglo
 router.post('/', (req, res) => {
     admins.push(req.body)
+    var datos = JSON.stringify(admins)
+    fw.writeFileSync('Archivos/admins.json', datos, 'utf-8')
     res.json('recibido');
 });
 
@@ -49,6 +52,38 @@ router.delete('/:nombre', (req, res) => {
     res.send('eliminado')
 });
 
+router.get('/csv', (req, res) => {
+    crearCSV()
+    res.json('ya')
+})
+
+function crearCSV() {
+    var text = ""
+    for (var i = 0; i < admins.length; i++) {
+        text = text + admins[i]['nombre'] + "," + admins[i]['fecha'] + "," +
+            admins[i]['telefono'] + "," + admins[i]['correo'] + "," + admins[i]['nick'] + "," +
+            admins[i]['contra'] + "," + admins[i]['puesto'] + "\n"
+    }
+    console.log(text)
+    fw.exists("C:\\Users\\chepe\\Desktop\\admins.csv", function (exists) {
+        if (exists) {
+            console.log(exists)
+            fw.unlinkSync('C:\\Users\\chepe\\Desktop\\admins.csv');
+        } else {
+            fw.appendFile("C:\\Users\\chepe\\Desktop\\admins.csv", text, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log('ya')
+            })
+        }
+    });
+    return (text)
+}
+
+
+
+
 function validarSesion(valorABuscar) {
     for (var i = 0; i < admins.length; i++) {
         if (admins[i]['nick'] === valorABuscar['nick'] &&
@@ -56,12 +91,15 @@ function validarSesion(valorABuscar) {
             return "1000";
         }
     }
+    return "2000"
 }
 
 function eliminarValor(valorABuscar) {
     for (var i = 0; i<admins.length; i++) {
         if (admins[i]['nick'] === valorABuscar) {
             admins.splice(i, 1)
+            var datos = JSON.stringify(admins)
+            fw.writeFileSync('Archivos/admins.json', datos, 'utf-8')
         }
     }
 }
@@ -70,6 +108,8 @@ function cambiarValor(valorABuscar, valorNuevo) {
     for (var i = 0; i < admins.length; i++) {
         if (admins[i]['nick'] === valorABuscar) {
             admins[i] = valorNuevo
+            var datos = JSON.stringify(admins)
+            fw.writeFileSync('Archivos/admins.json', datos, 'utf-8')
         }
     }
 }
@@ -81,6 +121,5 @@ function buscarUnico(valorABuscar) {
         }
     }
 }
-
 
 module.exports = router;
